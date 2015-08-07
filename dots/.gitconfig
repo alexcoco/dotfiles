@@ -1,0 +1,30 @@
+[user]
+    name  = Alex Coco
+    email = alex.coco@shopify.com
+[alias]
+    a    = add
+    b    = branch
+    c    = commit
+    co   = checkout
+    d    = diff
+    s    = status
+    l    = log --pretty=format:'%Cred%h %Creset%s%C(yellow)%d %Cgreen%cr%Creset' --abbrev-commit
+    lg   = log --pretty=format:'%Cred%h %Creset%s%C(yellow)%d %Cgreen%cr%Creset' --abbrev-commit --graph
+    undo = reset --soft HEAD~
+[color]
+    diff   = auto
+    status = auto
+    branch = auto
+    ui     = true
+[core]
+    excludesfile = ~/.gitignore
+[push]
+    default = simple
+[apply]
+    whitespace = nowarn
+[mergetool]
+    keepBackup = false
+[difftool]
+    prompt = false
+[help]
+    autocorrect = 0

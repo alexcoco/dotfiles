@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+# Handle ^c
+trap('SIGINT') { exit }
+
+DOTS_DIR = File.expand_path File.join(__FILE__, '..', '..', 'dots')
+
+FileUtils.cd(DOTS_DIR) do
+  Dir.entries(Dir.pwd).each do |file|
+    # Skip directories
+    next if File.directory?(file)
+
+    # /path/to/dots/foo -> /path/to/home/foo
+    source = File.expand_path File.join(DOTS_DIR, file)
+    dest   = File.expand_path File.join(Dir.home, file)
+    
+    puts "Linking: #{source} -> #{dest}"
+
+    options = { force: false }
+
+    if File.exist?(dest)
+      print "File exists. Overwrite? "
+      
+      if gets.chomp =~ /\Ay(es)?\z/i
+        options[:force] = true
+      else
+        next
+      end
+    end
+
+    FileUtils.ln_s source, dest, options
+  end
+end
