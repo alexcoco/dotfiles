@@ -10,8 +10,9 @@ set et
 " Set familiar backspace mode
 set bs=2
 
-" Show status bar
+" Show status bar and line numbers
 set ls=2
+set nu
 
 " Enable syntax highlighting
 syntax on
