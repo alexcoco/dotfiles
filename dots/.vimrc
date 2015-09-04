@@ -15,3 +15,6 @@ set ls=2
 
 " Enable syntax highlighting
 syntax on
+
+" Ignore case when searching
+set ic
