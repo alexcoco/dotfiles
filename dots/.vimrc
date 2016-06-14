@@ -17,5 +17,8 @@ set nu
 " Enable syntax highlighting
 syntax on
 
+" Set filetypes
+autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+
 " Ignore case when searching
 set ic
