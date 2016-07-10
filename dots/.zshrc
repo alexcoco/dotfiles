@@ -38,3 +38,7 @@ alias be="bundle exec"
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 export FWD="alex"
+
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi
