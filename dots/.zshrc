@@ -29,10 +29,6 @@ autoload -U compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # Matches case insensitive for lowercase
 zstyle ':completion:*' insert-tab pending           # Pasting with tabs doesn't perform completion
 
-# rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # Aliases
 setopt COMPLETE_ALIASES
 
