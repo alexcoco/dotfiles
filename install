@@ -1,11 +1,15 @@
 #!/usr/bin/env ruby
 
+# frozen-string-literal: true
+
 require 'fileutils'
 
 # Handle ^c
 trap('SIGINT') { exit }
 
 DOTS_DIR = File.expand_path(File.join(__dir__, 'dots'))
+
+force = ENV['SPIN'] == '1' || ENV['DOTFILES_FORCE'] == '1'
 
 FileUtils.cd(DOTS_DIR) do
   Dir.entries(Dir.pwd).each do |file|
@@ -16,20 +20,18 @@ FileUtils.cd(DOTS_DIR) do
     source = File.expand_path File.join(DOTS_DIR, file)
     dest   = File.expand_path File.join(Dir.home, file)
 
-    puts "Linking: #{source} -> #{dest}"
-
-    force = false
-
-    if File.exist?(dest)
-      print "File exists. Overwrite? "
-
-      if gets.chomp =~ /\Ay(es)?\z/i
-        force = true
-      else
-        next
-      end
-    end
+    # Skip existing dotfiles unless forced
+    next if File.exist?(dest) && !force
 
     FileUtils.ln_s(source, dest, force: force)
+
+    message = +"Linking: #{source} -> #{dest}"
+    message << ' (forced)' if force
+    puts message
   end
+end
+
+if ENV['SPIN'] == '1'
+  `git config --global user.email alex.coco@shopify.com`
+  `sudo apt-get install -y ripgrep fzf`
 end
