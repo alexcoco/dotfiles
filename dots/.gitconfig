@@ -7,18 +7,19 @@
     c    = commit
     co   = checkout
     d    = diff
+    df   = !sh -c 'git diff $(git merge-base --fork-point master)..HEAD --name-only'
     fix  = commit --amend --no-edit
     s    = status
     l    = log --pretty=format:'%Cred%h %Creset%s%C(yellow)%d %Cgreen%cr%Creset' --abbrev-commit
     lg   = log --pretty=format:'%Cred%h %Creset%s%C(yellow)%d %Cgreen%cr%Creset' --abbrev-commit --graph
     undo = reset --soft HEAD~
+    sw   = switch
 [color]
-    diff   = auto
-    status = auto
-    branch = auto
-    ui     = true
+    ui = true
 [core]
+    editor = /usr/bin/vim
     excludesfile = ~/.gitignore
+    commitGraph = true
 [push]
     default = simple
 [apply]
@@ -29,3 +30,11 @@
     prompt = false
 [help]
     autocorrect = 0
+[diff]
+    algorithm = patience
+[protocol]
+    version = 2
+[gc]
+    writeCommitGraph = true
+[pull]
+    ff = only
