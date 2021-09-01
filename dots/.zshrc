@@ -29,6 +29,9 @@ autoload -U compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # Matches case insensitive for lowercase
 zstyle ':completion:*' insert-tab pending           # Pasting with tabs doesn't perform completion
 
+# Do not autocomplete remote Git branches
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
 # Aliases
 setopt COMPLETE_ALIASES
 
