@@ -33,5 +33,5 @@ end
 
 if ENV['SPIN'] == '1'
   `git config --global user.email alex.coco@shopify.com`
-  `sudo apt-get install -y ripgrep fzf`
+  `sudo apt-get install -y ripgrep fzf git`
 end
