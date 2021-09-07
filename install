@@ -4,17 +4,24 @@
 
 require 'fileutils'
 
+def spin?
+  ENV['SPIN'] == '1'
+end
+
 # Handle ^c
 trap('SIGINT') { exit }
 
 DOTS_DIR = File.expand_path(File.join(__dir__, 'dots'))
 
-force = ENV['SPIN'] == '1' || ENV['DOTFILES_FORCE'] == '1'
+force = spin? || ENV['DOTFILES_FORCE'] == '1'
 
 FileUtils.cd(DOTS_DIR) do
   Dir.entries(Dir.pwd).each do |file|
     # Skip directories
     next if File.directory?(file)
+
+    # Skip spin config files when not in spin
+    next if file =~ /\.spin$/ && !spin?
 
     # /path/to/dots/foo -> /path/to/home/foo
     source = File.expand_path File.join(DOTS_DIR, file)
@@ -31,7 +38,7 @@ FileUtils.cd(DOTS_DIR) do
   end
 end
 
-if ENV['SPIN'] == '1'
+if spin?
   `git config --global user.email alex.coco@shopify.com`
   `sudo apt-get install -y ripgrep fzf git`
 end

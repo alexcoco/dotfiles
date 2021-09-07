@@ -45,3 +45,7 @@ export FWD="alex"
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
+
+if [ -f ~/.zshrc.spin ]; then
+  source ~/.zshrc.spin
+fi
