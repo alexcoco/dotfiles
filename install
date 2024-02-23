@@ -41,8 +41,4 @@ end
 if spin?
   `git config --global user.email alex.coco@shopify.com`
   `sudo apt-get install -y ripgrep fzf git`
-
-  # Install Vundle
-  `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-  `vim +PluginInstall +qall`
 end

@@ -1,17 +1,24 @@
-" Set up Vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+" vim-plug: Install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-" Vundle plugins
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim' " required
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'ntpeters/vim-better-whitespace'
-call vundle#end()
+" vim-plug: Install missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
-filetype plugin indent on
+" Vim Plug plugins
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'ntpeters/vim-better-whitespace'
+call plug#end()
+
+" fzf: set up ctrl-p binding
+nnoremap <silent> <C-p> :FZF<CR>
 
 " Set tab size to 2 spaces
 set ai
