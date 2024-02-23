@@ -19,9 +19,9 @@
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
-    commitGraph = true
 [push]
-    default = simple
+    autoSetupRemote = true
+    default = current
 [apply]
     whitespace = nowarn
 [mergetool]
@@ -30,11 +30,8 @@
     prompt = false
 [help]
     autocorrect = 0
-[diff]
-    algorithm = patience
-[protocol]
-    version = 2
-[gc]
-    writeCommitGraph = true
 [pull]
     ff = only
+[include]
+	path = /Users/alex/.config/dev/gitconfig
+	path = ~/.gitconfig.local
