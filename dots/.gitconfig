@@ -7,7 +7,7 @@
     c    = commit
     co   = checkout
     d    = diff
-    df   = !sh -c 'git diff $(git merge-base --fork-point master)..HEAD --name-only'
+    df   = !sh -c 'git diff $(git merge-base --fork-point main)..HEAD --name-only'
     fix  = commit --amend --no-edit
     s    = status
     l    = log --pretty=format:'%Cred%h %Creset%s%C(yellow)%d %Cgreen%cr%Creset' --abbrev-commit
