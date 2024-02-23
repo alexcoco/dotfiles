@@ -50,11 +50,7 @@ set nowrap
 " Limit syntax highlighting on long lines
 set synmaxcol=200
 
-" Configure CtrlP to use a cache
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-
-" Use rg for grep and search if available
+" Use rg for grep
 if executable('rg')
   set grepprg=rg\ --vimgrep
-  let g:ctrlp_user_command = 'rg --color never --files %s'
 endif
