@@ -32,7 +32,7 @@ set backspace=indent,eol,start
 
 " Show status bar and line numbers
 set ls=2
-set nu
+set nu rnu
 
 " Enable syntax highlighting
 syntax on
